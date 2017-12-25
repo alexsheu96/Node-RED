@@ -1,0 +1,102 @@
+[
+    {
+        "id": "a9519dfe.5698d",
+        "type": "tab",
+        "label": "Flow 2"
+    },
+    {
+        "id": "a672d2ed.a5a93",
+        "type": "inject",
+        "z": "a9519dfe.5698d",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "x": 97,
+        "y": 151,
+        "wires": [
+            [
+                "59a4cb8e.24c7a4"
+            ]
+        ]
+    },
+    {
+        "id": "59a4cb8e.24c7a4",
+        "type": "function",
+        "z": "a9519dfe.5698d",
+        "name": "payload",
+        "func": "msg.headers={\n    devicekey:\"aCehw0LFRFYoULRc\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 126,
+        "y": 247,
+        "wires": [
+            [
+                "f5d316d3.336578",
+                "6a1c334a.8d0b4c"
+            ]
+        ]
+    },
+    {
+        "id": "f5d316d3.336578",
+        "type": "http request",
+        "z": "a9519dfe.5698d",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/Du1Frkf7/datachannels/Temperature/datapoints.csv",
+        "tls": "",
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [
+                "ccbb4712.049908",
+                "cb846dbc.9ab14"
+            ]
+        ]
+    },
+    {
+        "id": "ccbb4712.049908",
+        "type": "http response",
+        "z": "a9519dfe.5698d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 550,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "6a1c334a.8d0b4c",
+        "type": "http request",
+        "z": "a9519dfe.5698d",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/Du1Frkf7/datachannels/Humidity/datapoints.csv",
+        "tls": "",
+        "x": 290,
+        "y": 320,
+        "wires": [
+            [
+                "ccbb4712.049908",
+                "cb846dbc.9ab14"
+            ]
+        ]
+    },
+    {
+        "id": "cb846dbc.9ab14",
+        "type": "debug",
+        "z": "a9519dfe.5698d",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 572,
+        "y": 214,
+        "wires": []
+    }
+]
